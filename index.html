@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Notes</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app" aria-label="Note software">
+      <aside class="sidebar" aria-label="Note list">
+        <div class="sidebar__top">
+          <div>
+            <h1>Notes</h1>
+            <p id="noteCount">0 notes</p>
+          </div>
+          <button id="newNoteButton" class="icon-button" type="button" aria-label="Create note" title="Create note">+</button>
+        </div>
+
+        <label class="search">
+          <span class="visually-hidden">Search notes</span>
+          <input id="searchInput" type="search" placeholder="Search notes">
+        </label>
+
+        <ul id="noteList" class="note-list" aria-label="Saved notes"></ul>
+      </aside>
+
+      <section class="editor" aria-label="Editor">
+        <article id="editorPanel" class="editor-panel">
+          <div id="unlockedEditor" class="unlocked-editor">
+            <div class="editor-toolbar">
+              <input id="noteTitle" class="title-input" type="text" aria-label="Note title" maxlength="80">
+              <div class="options">
+                <button id="optionsButton" class="options-button" type="button" aria-label="Note options" aria-expanded="false" aria-controls="optionsMenu" title="Note options">...</button>
+                <div id="optionsMenu" class="options-menu" role="menu" hidden>
+                  <button id="pinNoteButton" type="button" role="menuitem">Pin</button>
+                  <button id="lockNoteButton" type="button" role="menuitem">Lock</button>
+                  <button id="removeLockButton" type="button" role="menuitem" hidden>Remove lock</button>
+                  <button id="deleteNoteButton" class="danger-menu-item" type="button" role="menuitem">Delete</button>
+                </div>
+              </div>
+            </div>
+            <textarea id="noteBody" class="body-input" aria-label="Note content" spellcheck="true"></textarea>
+            <p id="saveStatus" class="save-status" role="status" aria-live="polite">Saved</p>
+          </div>
+
+          <div id="lockedPanel" class="locked-panel" hidden>
+            <div class="locked-panel__top">
+              <button id="lockedOptionsButton" class="options-button" type="button" aria-label="Note options" aria-expanded="false" aria-controls="lockedOptionsMenu" title="Note options">...</button>
+              <div id="lockedOptionsMenu" class="options-menu" role="menu" hidden>
+                <button id="lockedPinNoteButton" type="button" role="menuitem">Pin</button>
+                <button id="lockedDeleteNoteButton" class="danger-menu-item" type="button" role="menuitem">Delete</button>
+              </div>
+            </div>
+            <h2>Locked note</h2>
+            <p>This note is hidden until you unlock it.</p>
+            <button id="unlockNoteButton" class="secondary-button" type="button">Unlock</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <dialog id="passwordDialog" class="password-dialog" aria-labelledby="passwordDialogTitle">
+      <form id="passwordForm" method="dialog">
+        <h2 id="passwordDialogTitle">Lock note</h2>
+        <p id="passwordDialogText">Enter a password for this note.</p>
+        <label>
+          <span>Password</span>
+          <input id="passwordInput" type="password" autocomplete="current-password" required>
+        </label>
+        <p id="passwordError" class="password-error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button id="cancelPasswordButton" class="secondary-button" type="button">Cancel</button>
+          <button id="confirmPasswordButton" class="primary-button" type="submit">Lock</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
